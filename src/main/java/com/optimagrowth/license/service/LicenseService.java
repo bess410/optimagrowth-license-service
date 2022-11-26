@@ -48,11 +48,8 @@ public class LicenseService {
         return responseMessage;
     }
 
-    public String deleteLicense(String licenseId, String organizationId) {
-        String responseMessage = null;
-        responseMessage = String.format("Deleting license with id %s for the organization %s",
+    public String deleteLicense(String licenseId, String organizationId, Locale locale) {
+        return String.format(messages.getMessage("license.delete.message", null, locale),
                 licenseId, organizationId);
-
-        return responseMessage;
     }
 }
