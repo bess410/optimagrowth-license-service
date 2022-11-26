@@ -1,25 +1,18 @@
-version: <docker-compose-version>
+version: '3.7'
 services:
-  database:
-    image: <database-docker-image-name>
+  licensingservice:
+
+    image: ostock/licensing-service:0.0.1-SNAPSHOT
     ports:
-      - "<databasePort>:<databasePort>"
+      - "8080:8080"
     environment:
-      POSTGRES_USER: <databaseUser>
-      POSTGRES_PASSWORD: <databasePassword>
-      POSTGRES_DB: <databaseName>
-  <service-name>:
-    image: <service-docker-image-name>
-    ports:
-      - "<applicationPort>:<applicationPort>"
-    environment:
-      PROFILE: <profile-name>
-      DATABASESERVER_PORT: "<databasePort>"
-    container_name: <container-name>
+      - "SPRING_PROFILES_ACTIVE=dev"
+
     networks:
-    backend:
-    aliases:
-      - "alias"
-  networks:
-    backend:
-  driver: bridge
+      backend:
+        aliases:
+          - "licenseservice"
+
+networks:
+  backend:
+    driver: bridge
